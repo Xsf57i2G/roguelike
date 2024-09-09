@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwex8bka8ldhy"]
+
+[ext_resource type="Script" path="res://src/voxel.gd" id="1_pkguw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ctemb"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_e6m7a"]
+
+[node name="Voxel" type="StaticBody3D"]
+script = ExtResource("1_pkguw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_ctemb")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_e6m7a")

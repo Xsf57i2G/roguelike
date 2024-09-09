@@ -1,0 +1,176 @@
+[gd_scene load_steps=13 format=3 uid="uid://dr2i3aq4y8axh"]
+
+[ext_resource type="PackedScene" uid="uid://diah5f448q010" path="res://scene/character.tscn" id="1_cc2tg"]
+[ext_resource type="Script" path="res://src/mercenary.gd" id="2_2m3ci"]
+[ext_resource type="Texture2D" uid="uid://dsskg1sr7dbdq" path="res://res/crosshair.png" id="4_vpar5"]
+[ext_resource type="PackedScene" uid="uid://bke7npdjc4ufh" path="res://scene/bark_bane.tscn" id="5_1r0vo"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ewvjs"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_jknht"]
+size = Vector3(0.2, 0.2, 0.5)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uclb2"]
+
+[sub_resource type="Animation" id="Animation_fs327"]
+resource_name = "Crouch"
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1, 0.2, 1), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_0p3cl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/Inventory/Bark Bane:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D/Inventory/Hand:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.5, -0.5, -0.5)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Camera3D/Inventory/Hand:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3e11m"]
+resource_name = "Use"
+length = 0.5
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/Inventory/Bark Bane:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.02, 0.5),
+"transitions": PackedFloat32Array(0.5, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-1.39626, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_n5o2o"]
+resource_name = "Punch"
+length = 0.2
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/Inventory/Hand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.5, -0.5, -0.5), Vector3(0.5, -0.5, -0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D/Inventory/Hand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.261799, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rjakl"]
+_data = {
+"Crouch": SubResource("Animation_fs327"),
+"Punch": SubResource("Animation_n5o2o"),
+"RESET": SubResource("Animation_0p3cl"),
+"Use": SubResource("Animation_3e11m")
+}
+
+[node name="Mercenary" instance=ExtResource("1_cc2tg")]
+script = ExtResource("2_2m3ci")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." index="1"]
+shape = SubResource("CapsuleShape3D_ewvjs")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." index="3"]
+light_color = Color(1, 0.643137, 0, 1)
+
+[node name="Camera3D" type="Camera3D" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+fov = 90.0
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D" index="0"]
+target_position = Vector3(0, 0, -4)
+
+[node name="Inventory" type="Area3D" parent="Camera3D" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+input_ray_pickable = false
+
+[node name="Hand" type="MeshInstance3D" parent="Camera3D/Inventory" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.5, -0.5)
+visible = false
+mesh = SubResource("BoxMesh_jknht")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Camera3D/Inventory" index="1"]
+shape = SubResource("CapsuleShape3D_uclb2")
+
+[node name="Bark Bane" parent="Camera3D/Inventory" index="2" instance=ExtResource("5_1r0vo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, -1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
+libraries = {
+"": SubResource("AnimationLibrary_rjakl")
+}
+playback_default_blend_time = 0.5
+
+[node name="TextureRect" type="TextureRect" parent="." index="7"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_vpar5")
+
+[connection signal="body_entered" from="Camera3D/Inventory" to="." method="_on_inventory_body_entered"]

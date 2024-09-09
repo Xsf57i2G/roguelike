@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://4jm61j10o7bc"]
+
+[ext_resource type="Script" path="res://src/dungeon.gd" id="1_ej5i0"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1xhqc"]
+noise_type = 3
+seed = 1357479717
+
+[node name="Dungeon" type="Node3D"]
+script = ExtResource("1_ej5i0")
+noise = SubResource("FastNoiseLite_1xhqc")

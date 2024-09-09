@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://diah5f448q010"]
+
+[ext_resource type="Script" path="res://src/character.gd" id="1_2rj26"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_qc667"]
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bp7hp"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cwv1f"]
+size = Vector3(32, 32, 32)
+
+[node name="CharacterBody3D" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_2rj26")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_qc667")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_bp7hp")
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_cwv1f")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

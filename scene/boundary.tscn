@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://mo6k1a5nvqyg"]
+
+[ext_resource type="PackedScene" uid="uid://cwex8bka8ldhy" path="res://scene/voxel.tscn" id="1_14o11"]
+
+[sub_resource type="Gradient" id="Gradient_1oomj"]
+offsets = PackedFloat32Array(0.7, 1)
+colors = PackedColorArray(0, 0.00500007, 0.3, 1, 1, 1, 1, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_y5sdk"]
+noise_type = 3
+frequency = 0.6
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ci3r0"]
+width = 64
+height = 64
+in_3d_space = true
+color_ramp = SubResource("Gradient_1oomj")
+noise = SubResource("FastNoiseLite_y5sdk")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n75mf"]
+albedo_texture = SubResource("NoiseTexture2D_ci3r0")
+texture_filter = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_ho7db"]
+material = SubResource("StandardMaterial3D_n75mf")
+
+[node name="Boundry" instance=ExtResource("1_14o11")]
+
+[node name="MeshInstance3D" parent="." index="1"]
+mesh = SubResource("BoxMesh_ho7db")

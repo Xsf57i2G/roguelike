@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://chtwe18n66hed"]
+
+[ext_resource type="PackedScene" uid="uid://cxhvo8usajnre" path="res://scene/item.tscn" id="1_5py1m"]
+[ext_resource type="ArrayMesh" uid="uid://dxwp2flvmu7ua" path="res://res/potion.res" id="2_cplio"]
+[ext_resource type="Script" path="res://src/potion.gd" id="2_mp8xc"]
+
+[node name="Potion" instance=ExtResource("1_5py1m")]
+script = ExtResource("2_mp8xc")
+
+[node name="MeshInstance3D" parent="." index="0"]
+mesh = ExtResource("2_cplio")

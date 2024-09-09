@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhjl4oc4w7s03"]
+
+[ext_resource type="PackedScene" uid="uid://cwex8bka8ldhy" path="res://scene/voxel.tscn" id="1_wpj4n"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jt78f"]
+transparency = 1
+albedo_color = Color(0, 0.745098, 1, 0.501961)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5o6b7"]
+material = SubResource("StandardMaterial3D_jt78f")
+
+[node name="Water" instance=ExtResource("1_wpj4n")]
+
+[node name="MeshInstance3D" parent="." index="1"]
+mesh = SubResource("BoxMesh_5o6b7")

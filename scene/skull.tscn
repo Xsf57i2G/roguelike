@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://bgdq1c5orwuts"]
+
+[ext_resource type="PackedScene" uid="uid://diah5f448q010" path="res://scene/character.tscn" id="1_vuyba"]
+[ext_resource type="Script" path="res://src/skull.gd" id="2_3xeex"]
+[ext_resource type="ArrayMesh" uid="uid://dteiyxkf0m08p" path="res://res/skull.res" id="3_6fctu"]
+[ext_resource type="PackedScene" uid="uid://dwc8nynkhbl4y" path="res://scene/fire.tscn" id="4_oxkup"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ldea6"]
+
+[sub_resource type="Animation" id="Animation_wamxo"]
+resource_name = "Move"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 0.5, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1pk2i"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_snf64"]
+_data = {
+"Move": SubResource("Animation_wamxo"),
+"RESET": SubResource("Animation_1pk2i")
+}
+
+[node name="Skull" instance=ExtResource("1_vuyba")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("2_3xeex")
+
+[node name="MeshInstance3D" parent="." index="0"]
+mesh = ExtResource("3_6fctu")
+
+[node name="CollisionShape3D" parent="." index="1"]
+shape = SubResource("SphereShape3D_ldea6")
+
+[node name="Fire" parent="." index="2" instance=ExtResource("4_oxkup")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+libraries = {
+"": SubResource("AnimationLibrary_snf64")
+}
+autoplay = "Move"

@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://y1cloraylcnk"]
+
+[ext_resource type="Script" path="res://src/level.gd" id="1_bfn20"]
+[ext_resource type="PackedScene" uid="uid://dr2i3aq4y8axh" path="res://scene/mercenary.tscn" id="2_4odf3"]
+
+[sub_resource type="Environment" id="Environment_u713e"]
+glow_enabled = true
+glow_normalized = true
+fog_enabled = true
+fog_mode = 1
+fog_density = 1.0
+fog_depth_curve = 0.5
+
+[node name="Level" type="Node3D"]
+script = ExtResource("1_bfn20")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_u713e")
+
+[node name="Mercenary" parent="." instance=ExtResource("2_4odf3")]
