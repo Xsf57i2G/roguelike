@@ -46,6 +46,11 @@ func gen_cube_mesh(at):
 		vertices.append(at + Vector3(0.5, 0.5, 0.5))
 		vertices.append(at + Vector3(-0.5, 0.5, 0.5))
 
+		normals.append(Vector3(0, 1, 0))
+		normals.append(Vector3(0, 1, 0))
+		normals.append(Vector3(0, 1, 0))
+		normals.append(Vector3(0, 1, 0))
+
 		add_triangles()
 
 	if is_air(at + Vector3(1, 0, 0)):
@@ -54,6 +59,11 @@ func gen_cube_mesh(at):
 		vertices.append(at + Vector3(0.5, 0.5, -0.5))
 		vertices.append(at + Vector3(0.5, -0.5, -0.5))
 		vertices.append(at + Vector3(0.5, -0.5, 0.5))
+
+		normals.append(Vector3(1, 0, 0))
+		normals.append(Vector3(1, 0, 0))
+		normals.append(Vector3(1, 0, 0))
+		normals.append(Vector3(1, 0, 0))
 
 		add_triangles()
 
@@ -64,6 +74,11 @@ func gen_cube_mesh(at):
 		vertices.append(at + Vector3(0.5, -0.5, 0.5))
 		vertices.append(at + Vector3(-0.5, -0.5, 0.5))
 
+		normals.append(Vector3(0, 0, 1))
+		normals.append(Vector3(0, 0, 1))
+		normals.append(Vector3(0, 0, 1))
+		normals.append(Vector3(0, 0, 1))
+
 		add_triangles()
 
 	if is_air(at + Vector3(-1, 0, 0)):
@@ -72,6 +87,11 @@ func gen_cube_mesh(at):
 		vertices.append(at + Vector3(-0.5, 0.5, 0.5))
 		vertices.append(at + Vector3(-0.5, -0.5, 0.5))
 		vertices.append(at + Vector3(-0.5, -0.5, -0.5))
+
+		normals.append(Vector3(-1, 0, 0))
+		normals.append(Vector3(-1, 0, 0))
+		normals.append(Vector3(-1, 0, 0))
+		normals.append(Vector3(-1, 0, 0))
 
 		add_triangles()
 
@@ -82,6 +102,11 @@ func gen_cube_mesh(at):
 		vertices.append(at + Vector3(-0.5, -0.5, -0.5))
 		vertices.append(at + Vector3(0.5, -0.5, -0.5))
 
+		normals.append(Vector3(0, 0, -1))
+		normals.append(Vector3(0, 0, -1))
+		normals.append(Vector3(0, 0, -1))
+		normals.append(Vector3(0, 0, -1))
+
 		add_triangles()
 
 	if is_air(at + Vector3(0, -1, 0)):
@@ -90,6 +115,11 @@ func gen_cube_mesh(at):
 		vertices.append(at + Vector3(0.5, -0.5, 0.5))
 		vertices.append(at + Vector3(0.5, -0.5, -0.5))
 		vertices.append(at + Vector3(-0.5, -0.5, -0.5))
+
+		normals.append(Vector3(0, -1, 0))
+		normals.append(Vector3(0, -1, 0))
+		normals.append(Vector3(0, -1, 0))
+		normals.append(Vector3(0, -1, 0))
 
 		add_triangles()
 
@@ -143,6 +173,7 @@ func gen_chunk():
 	array.resize(Mesh.ARRAY_MAX)
 	array[Mesh.ARRAY_VERTEX] = vertices
 	array[Mesh.ARRAY_INDEX] = indices
+	array[Mesh.ARRAY_NORMAL] = normals
 
 	a_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, array)
 	mesh = a_mesh
