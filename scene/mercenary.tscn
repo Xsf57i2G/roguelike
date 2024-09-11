@@ -28,6 +28,35 @@ tracks/0/keys = {
 "values": [Vector3(1, 1, 1), Vector3(1, 0.2, 1), Vector3(1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_n5o2o"]
+resource_name = "Punch"
+length = 0.2
+step = 0.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D/Inventory/Hand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.5, -0.5, -0.5), Vector3(0.5, -0.5, -0.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Camera3D/Inventory/Hand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.261799, 0, 0), Vector3(0, 0, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_0p3cl"]
 length = 0.001
 tracks/0/type = "value"
@@ -84,35 +113,6 @@ tracks/0/keys = {
 "values": [Vector3(0, 0, 0), Vector3(-1.39626, 0, 0), Vector3(0, 0, 0)]
 }
 
-[sub_resource type="Animation" id="Animation_n5o2o"]
-resource_name = "Punch"
-length = 0.2
-step = 0.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Camera3D/Inventory/Hand:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(0.5, -0.5, -0.5), Vector3(0.5, -0.5, -0.5)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Camera3D/Inventory/Hand:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector3(-0.261799, 0, 0), Vector3(0, 0, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rjakl"]
 _data = {
 "Crouch": SubResource("Animation_fs327"),
@@ -143,7 +143,6 @@ input_ray_pickable = false
 
 [node name="Hand" type="MeshInstance3D" parent="Camera3D/Inventory" index="0"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.5, -0.5)
-visible = false
 mesh = SubResource("BoxMesh_jknht")
 skeleton = NodePath("../..")
 

@@ -2,12 +2,13 @@ class_name Character
 extends CharacterBody3D
 
 @export var invulnerable = false
-@export var inventory = []
+@export var inventory = [Item.new()]
 @export var mana = 100
 @export var armor = 0
 @export var speed = 64
 @export var hp = 3
 @export var alive = true
+@export var fleeing = false
 
 func _ready():
 	pass
